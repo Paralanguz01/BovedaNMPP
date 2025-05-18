@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Caja Fuerte Digital</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="app">
+    <!-- Pantalla de bienvenida / login -->
+    <section id="login-screen" class="screen active">
+      <h1>Caja Fuerte Digital</h1>
+      <input type="email" id="email" placeholder="Correo electrónico" required>
+      <div class="password-wrapper">
+        <input type="password" id="password" placeholder="Clave maestra" required pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}">
+        <span id="toggle-password">👁️</span>
+      </div>
+      <button id="login-btn">Ingresar</button>
+      <p>No tienes cuenta? <a href="#" id="go-register">Registrarse</a></p>
+      <p><a href="#" id="forgot-password">¿Olvidaste tu contraseña?</a></p>
+    </section>
+
+    <!-- Pantalla de registro -->
+    <section id="register-screen" class="screen">
+      <h1>Registro</h1>
+      <input type="email" id="reg-email" placeholder="Correo electrónico" required>
+      <input type="password" id="reg-password" placeholder="Clave (mayúsculas, minúsculas, números)" required>
+      <button id="register-btn">Crear cuenta</button>
+      <p><a href="#" id="go-login">Volver</a></p>
+    </section>
+
+    <!-- Configuración inicial -->
+    <section id="setup-screen" class="screen">
+      <h2>Configurar Preguntas y Retardo</h2>
+      <textarea id="user-reminder" placeholder="¿Por qué estás guardando esto aquí?"></textarea>
+      <input type="text" id="question1" placeholder="Pregunta 1">
+      <input type="text" id="answer1" placeholder="Respuesta 1">
+      <input type="text" id="question2" placeholder="Pregunta 2">
+      <input type="text" id="answer2" placeholder="Respuesta 2">
+      <label>Retardo (minutos, horas o días)</label>
+      <input type="number" id="delay" min="0">
+      <select id="delay-unit">
+        <option value="minutes">Minutos</option>
+        <option value="hours">Horas</option>
+        <option value="days">Días</option>
+      </select>
+      <button id="save-setup">Guardar y Activar Caja</button>
+    </section>
+
+    <!-- Pantalla de desbloqueo (responder preguntas y esperar) -->
+    <section id="unlock-screen" class="screen">
+      <h2>Desbloqueo Progresivo</h2>
+      <p id="reminder-msg"></p>
+      <div id="questions-container"></div>
+      <button id="submit-answers">Verificar</button>
+    </section>
+
+    <!-- Pantalla de espera -->
+    <section id="wait-screen" class="screen">
+      <h2>Esperando...</h2>
+      <p>Tu caja fuerte se abrirá en:</p>
+      <p id="countdown"></p>
+    </section>
+
+    <!-- Caja Fuerte Abierta -->
+    <section id="vault-screen" class="screen">
+      <h2>Tu Información</h2>
+      <textarea id="vault-data" placeholder="Aquí puedes guardar tus notas privadas o claves..."></textarea>
+      <button id="save-vault">Guardar Cambios</button>
+      <button id="lock-vault">Cerrar Caja Fuerte</button>
+    </section>
+  </div>
+
+  <script type="module" src="firebase-config.js"></script>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
